@@ -1,3 +1,12 @@
+struct MaxHeap
+{
+    Section* buffer[MAX_SECTION_CNT];
+    int size;
+};
+
+MaxHeap maxheap;
+
+
 void HeapInit(MaxHeap* heap)
 {
     heap->size = 0;
@@ -69,4 +78,16 @@ void HeapPush(MaxHeap* heap, Section* node)
     heap->size++;
     if (heap->size > 1)
         HeapAdjustUpward(heap, node->hidx);
+}
+
+
+Cell* HeapPop(MinHeap* heap) {
+    if (heap->size == 1) {
+        heap->size = 0;
+        return heap->buf[0];
+    }
+    HeapSwap(heap, 0, heap->size - 1);
+    heap->size--;
+    HeapAdjustDownwards(heap, 0);
+    return heap->buf[heap->size];
 }
