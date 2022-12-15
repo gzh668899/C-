@@ -80,6 +80,12 @@ void HeapPush(MaxHeap* heap, Section* node)
         HeapAdjustUpward(heap, node->hidx);
 }
 
+void HeapPush(MINHEAP* heap, CELL* node) {
+    heap->buf[heap->size] = node;
+    HeapAdjustUpwards(heap, heap->size);
+    heap->size++;
+}
+
 
 Cell* HeapPop(MinHeap* heap) {
     if (heap->size == 1) {
