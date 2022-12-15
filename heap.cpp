@@ -91,3 +91,11 @@ Cell* HeapPop(MinHeap* heap) {
     HeapAdjustDownwards(heap, 0);
     return heap->buf[heap->size];
 }
+
+inline void HeapReplace(Heap* heap, int idx, File* new_file) {
+    new_file->idx = idx;
+    heap->buf[idx] = new_file;
+    HeapAdjustDownwards(heap, idx);
+    HeapAdjustUpwards(heap, idx);
+}
+ 
